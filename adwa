@@ -1,0 +1,39 @@
+create database if not exists HotelsDB;
+use hotelsDB;
+
+
+create table if not exists clients(
+username varchar(20) primary key,
+pass varchar(20) not null,
+fName varchar(20) not null,
+lNname varchar(30),
+rDate date not null,
+phone varchar(10),
+e_mail varchar(50) not null,
+secCont varchar(50)
+
+);
+
+
+create table if not exists hotels(
+ id int primary key ,
+ hName varchar(20) ,
+ address varchar(50),
+ e_mail varchar(20),
+ phone varchar(10)
+);
+
+
+create table if not exists reservations(
+    id int primary key ,
+    hotel_id int,
+    c_user varchar(20),
+    people int,
+    nights int,
+    accommodation date,
+    vacation date,
+    rooms int,
+    foreign key (hotel_id) references hotels(id),
+    foreign key (c_user) references clients(username)
+
+);
