@@ -110,7 +110,7 @@ public class LoginMenu extends JFrame {
 
         JLabel loggingSign = new JLabel("<html>SIGN IN</html>");
         loggingSign.setOpaque(false);
-        loggingSign.setBounds(65,112,100,30);
+        loggingSign.setBounds(65,100,100,30);
         loggingSign.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 25));
         loggingSign.setVerticalAlignment(SwingConstants.CENTER);
         //loggingSign.setHorizontalAlignment(SwingConstants.CENTER);
@@ -118,20 +118,27 @@ public class LoginMenu extends JFrame {
         loggingSign.setBackground(null);
 
 
+        ///Spacer for the textarea
+        RoundJLabel spacerU = new RoundJLabel(125, 150, 390, 50, 50, 50);
+        spacerU.setOpaque(false);
+        spacerU.setBackground(new Color(0,0,0,75));
+        background.add(spacerU);
 
-       HintTextField username = new HintTextField("Username", 50, 50);
-       username.setBackground(new Color(0,0,0,20));
+
+        HintTextField username = new HintTextField("Username", 50, 50);
+        username.setBackground(new Color(0,0,0,0));
         //username.setForeground(Color.WHITE);
-       username.setBounds(95, 150,360,50 );
-       username.setOpaque(false);
+        username.setBounds(15, 0, 370, 50); // relative to spacerU
+        username.setOpaque(false);
 
 
-        JLabel uIcon = new JLabel(new ImageIcon("icons/user1.png"));
+
+        JLabel uIcon = new JLabel(new ImageIcon("icons/icons8-user-64.png"));
         uIcon.setOpaque(false);
         uIcon.setFont(uIcon.getFont().deriveFont(Font.ITALIC));
         uIcon.setHorizontalAlignment(JLabel.CENTER);
         // uIcon.setOpaque(true);
-        uIcon.setBounds(65, 150, 30,30);
+        uIcon.setBounds(65, 145, 60,60);
         //validate();
 
 
@@ -148,13 +155,17 @@ public class LoginMenu extends JFrame {
 
 
 
-
-
+        //Spacer for password
+        RoundJLabel spacerP = new RoundJLabel(65, 230, 390, 50, 50, 50);
+        spacerP.setOpaque(false);
+        spacerP.setBackground(new Color(0,0,0,70));
+        background.add(spacerP);
 
         HintPassField password = new HintPassField("Password",50, 50);
-        password.setBackground(new Color(0,0,0,20));
+        password.setBackground(new Color(0,0,0,0));
+        password.setBounds(15, 0, 370, 50); //Relative to spacerP
         password.setOpaque(false);
-        password.setBounds(95, 230, 360, 50);
+
 
 
 
@@ -224,7 +235,7 @@ public class LoginMenu extends JFrame {
 
         JLabel reg = new JLabel("<html>SIGN UP</html>");
         reg.setOpaque(false);
-        reg.setBounds(195,112,120,30);
+        reg.setBounds(195,100,120,30);
         reg.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 25));
         reg.setVerticalAlignment(SwingConstants.CENTER);
         reg.setForeground(Color.WHITE);
@@ -243,10 +254,10 @@ public class LoginMenu extends JFrame {
         background.add(close);
         background.add(minimise);
         background.add(loggingSign);
-        background.add(username);
+        spacerU.add(username);
         background.add(uIcon);
-        background.add(password);
-        background.add(pIcon);
+        spacerP.add(password);
+        //background.add(pIcon);
         background.add(login);
         background.add(reg);
         background.add(showP);
