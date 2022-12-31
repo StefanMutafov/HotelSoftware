@@ -19,7 +19,6 @@ import java.util.Map;
 public class LoginMenu extends JFrame {
     //Setting LoginMenu values
     public LoginMenu() {
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(520,670);
         setLayout(new BorderLayout());
@@ -119,7 +118,7 @@ public class LoginMenu extends JFrame {
 
 
         ///Spacer for the textarea
-        RoundJLabel spacerU = new RoundJLabel(125, 150, 390, 50, 50, 50);
+        RoundJLabel spacerU = new RoundJLabel(125, 150, 330, 50, 50, 50);
         spacerU.setOpaque(false);
         spacerU.setBackground(new Color(0,0,0,75));
         background.add(spacerU);
@@ -133,10 +132,11 @@ public class LoginMenu extends JFrame {
 
 
 
-        JLabel uIcon = new JLabel(new ImageIcon("icons/icons8-user-64.png"));
+        JLabel uIcon = new JLabel(new ImageIcon("icons/icons8-user-641.png"));
         uIcon.setOpaque(false);
         uIcon.setFont(uIcon.getFont().deriveFont(Font.ITALIC));
         uIcon.setHorizontalAlignment(JLabel.CENTER);
+        uIcon.setVerticalAlignment(JLabel.CENTER);
         // uIcon.setOpaque(true);
         uIcon.setBounds(65, 145, 60,60);
         //validate();
@@ -156,7 +156,7 @@ public class LoginMenu extends JFrame {
 
 
         //Spacer for password
-        RoundJLabel spacerP = new RoundJLabel(65, 230, 390, 50, 50, 50);
+        RoundJLabel spacerP = new RoundJLabel(125, 230, 330, 50, 50, 50);
         spacerP.setOpaque(false);
         spacerP.setBackground(new Color(0,0,0,70));
         background.add(spacerP);
@@ -170,12 +170,13 @@ public class LoginMenu extends JFrame {
 
 
 
-        JLabel pIcon = new JLabel(new ImageIcon("icons/pass.png"));
+        JLabel pIcon = new JLabel(new ImageIcon("icons/icons8-secure-60.png"));
         pIcon.setOpaque(false);
         pIcon.setFont(uIcon.getFont().deriveFont(Font.ITALIC));
         pIcon.setHorizontalAlignment(JLabel.CENTER);
+        pIcon.setVerticalAlignment(JLabel.CENTER);
         // uIcon.setOpaque(true);
-        pIcon.setBounds(65, 230, 30,30);
+        pIcon.setBounds(65, 225, 60,60);
         //validate();
 
 
@@ -257,7 +258,7 @@ public class LoginMenu extends JFrame {
         spacerU.add(username);
         background.add(uIcon);
         spacerP.add(password);
-        //background.add(pIcon);
+        background.add(pIcon);
         background.add(login);
         background.add(reg);
         background.add(showP);
