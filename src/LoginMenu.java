@@ -2,6 +2,7 @@ import Objects.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,12 +21,13 @@ public class LoginMenu extends JFrame {
     public LoginMenu() {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(450,550);
-        setLayout(null);
+        setSize(520,670);
+        setLayout(new BorderLayout());
+       // setLayout(null);
         setResizable(false);
         setUndecorated(true);
         setLocationRelativeTo(null);
-        getContentPane().setBackground( Color.YELLOW );
+        //getContentPane().setBackground( Color.YELLOW );
         buildLoginMenu();
         setVisible(true);
     }
@@ -33,31 +35,39 @@ public class LoginMenu extends JFrame {
     private void buildLoginMenu() {
 
 
+
 //        setLayout(new BorderLayout());
-//        JLabel background=new JLabel(new ImageIcon("icons/michael-sala-QkvMIG6knxY-unsplash.jpg"));
-//        add(background);
-//        background.setLayout(new FlowLayout());
-//        background.setLayout(null);
+        JLabel background=new JLabel(new ImageIcon("icons/background.jpg"));
+        add(background);
+        //background.setLayout(new FlowLayout());
+        background.setLayout(null);
 
 
-        JLabel close  = new JLabel("<html>X</html>");
+        JLabel close  = new JLabel("<html>✕</html>");
+        close.setBackground(null);
+        close.setForeground(Color.LIGHT_GRAY);
         close.setOpaque(true);
-        close.setBounds(435,0,15,15);
-        close.setFont(new Font("Verdana", Font.BOLD, 18));
+        close.setBounds(460,0,60,30);
+        close.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 18));
         close.setVerticalAlignment(SwingConstants.CENTER);
         close.setHorizontalAlignment(SwingConstants.CENTER);
         close.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                close.setBackground(Color.BLUE);
+                close.setBackground(Color.RED); close.setForeground(Color.WHITE);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                close.setBackground(Color.WHITE);
+                close.setBackground(null); close.setForeground(Color.LIGHT_GRAY);
             }
             @Override
-            public void mouseClicked(MouseEvent e) {
-               LoginMenu.super.dispose();
+            public void mousePressed(MouseEvent e) {
+               close.setBackground(new Color(115, 6, 26));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e){
+                LoginMenu.super.dispose();
             }
         });
 
@@ -67,22 +77,29 @@ public class LoginMenu extends JFrame {
 
 
         JLabel minimise  = new JLabel("<html>-</html>");
+        minimise.setForeground(Color.LIGHT_GRAY);
+        minimise.setBackground(null);
         minimise.setOpaque(true);
-        minimise.setBounds(415,0,15,15);
+        minimise.setBounds(400,0,60,30);
         minimise.setFont(new Font("Verdana", Font.BOLD, 18));
         minimise.setVerticalAlignment(SwingConstants.CENTER);
         minimise.setHorizontalAlignment(SwingConstants.CENTER);
         minimise.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                minimise.setBackground(Color.BLUE);
+                minimise.setBackground(Color.LIGHT_GRAY);minimise.setForeground(Color.WHITE);
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                minimise.setBackground(Color.WHITE);
+                minimise.setBackground(null);minimise.setForeground(Color.LIGHT_GRAY);
             }
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
+               minimise.setBackground(new Color(189, 153, 159));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e){
                 LoginMenu.super.setState(Frame.ICONIFIED);
             }
         });
@@ -91,27 +108,30 @@ public class LoginMenu extends JFrame {
 
 
 
-        JLabel loggingSign = new JLabel("<html>User Login</html>");
-        loggingSign.setOpaque(true);
-        loggingSign.setBounds(225/2,50,225,30);
-        loggingSign.setFont(new Font("Verdana", Font.BOLD, 18));
+        JLabel loggingSign = new JLabel("<html>SIGN IN</html>");
+        loggingSign.setOpaque(false);
+        loggingSign.setBounds(65,112,100,30);
+        loggingSign.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 25));
         loggingSign.setVerticalAlignment(SwingConstants.CENTER);
-        loggingSign.setHorizontalAlignment(SwingConstants.CENTER);
-        loggingSign.setBackground(Color.BLUE);
+        //loggingSign.setHorizontalAlignment(SwingConstants.CENTER);
+        loggingSign.setForeground(Color.WHITE);
+        loggingSign.setBackground(null);
 
 
 
-       HintTextField username = new HintTextField("Username", 15);
-         username.setBounds(225/2+30, 105,225-30,30 );
-         username.setOpaque(false);
+       HintTextField username = new HintTextField("Username", 50, 50);
+       username.setBackground(new Color(0,0,0,20));
+        //username.setForeground(Color.WHITE);
+       username.setBounds(95, 150,360,50 );
+       username.setOpaque(false);
 
 
         JLabel uIcon = new JLabel(new ImageIcon("icons/user1.png"));
-        uIcon.setOpaque(true);
+        uIcon.setOpaque(false);
         uIcon.setFont(uIcon.getFont().deriveFont(Font.ITALIC));
         uIcon.setHorizontalAlignment(JLabel.CENTER);
         // uIcon.setOpaque(true);
-        uIcon.setBounds(225/2, 105, 30,30);
+        uIcon.setBounds(65, 150, 30,30);
         //validate();
 
 
@@ -122,7 +142,7 @@ public class LoginMenu extends JFrame {
             throw new RuntimeException(e);
         }
         JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-        RoundJPanel p = new RoundJPanel( 0, 105, 38,38, 50, 50);
+        RoundJPanel p = new RoundJPanel( 0, 150, 38,38, 50, 50);
         p.add(picLabel);
         //add(p);
 
@@ -131,10 +151,10 @@ public class LoginMenu extends JFrame {
 
 
 
-        HintPassField password = new HintPassField("Password",15);
+        HintPassField password = new HintPassField("Password",50, 50);
+        password.setBackground(new Color(0,0,0,20));
         password.setOpaque(false);
-        password.setBounds(225/2+30, 145, 225-30, 30);
-
+        password.setBounds(95, 230, 360, 50);
 
 
 
@@ -144,53 +164,8 @@ public class LoginMenu extends JFrame {
         pIcon.setFont(uIcon.getFont().deriveFont(Font.ITALIC));
         pIcon.setHorizontalAlignment(JLabel.CENTER);
         // uIcon.setOpaque(true);
-        pIcon.setBounds(225/2, 145, 30,30);
+        pIcon.setBounds(65, 230, 30,30);
         //validate();
-
-
-        CustomRoundButton  login = new CustomRoundButton(225/2, 180, 225, 30, 30,30);
-        login.setIdle(Color.GRAY);
-        login.setEntered(Color.WHITE);
-        login.setText("<html><font color='red'>Login</font></html>");
-        login.setOpaque(false);
-
-
-//
-//        UIManager.put("Button.select", Color.red);
-//        roundButton login = new roundButton("Login");
-//        login.setBackground(Color.red);
-//        login.setOpaque(false);
-//        login.setBounds(225/2, 180, 225,30);
-
-
-
-
-
-        JLabel reg = new JLabel("Don't have an account? Make a new one!");
-        reg.setHorizontalAlignment(JLabel.CENTER);
-        reg.setFont(new Font("Serif",Font.PLAIN, 12));
-        reg.setBounds(225/2, 210, 225, 30);
-        reg.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                new RegisterMenu();
-               // LoginMenu.super.dispose();
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                Map<TextAttribute, Integer> fontAttributes = new HashMap<TextAttribute, Integer>();
-                fontAttributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-                Font boldUnderline = new Font("Serif",Font.BOLD, 12).deriveFont(fontAttributes);
-                reg.setFont(boldUnderline);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                reg.setFont(new Font("Serif",Font.PLAIN, 12));
-            }
-        });
 
 
 
@@ -199,7 +174,7 @@ public class LoginMenu extends JFrame {
         showP.setFont(showP.getFont().deriveFont(Font.ITALIC));
         showP.setHorizontalAlignment(JLabel.CENTER);
         // uIcon.setOpaque(true);
-        showP.setBounds(225/2+225, 145, 32, 32);
+        showP.setBounds(455, 230, 32, 32);
         showP.addMouseListener(new MouseAdapter() {
         });
         //validate();
@@ -228,23 +203,55 @@ public class LoginMenu extends JFrame {
         });
 
 
+        CustomRoundButton  login = new CustomRoundButton(65, 330, 390, 50, 50,50);
+        login.setIdle(new Color(16, 88, 204));
+        login.setEntered(new Color(7, 51, 122));
+        login.setBackground(new Color(16, 88, 204));
+        login.setForeground(null);
+        login.setFont(new Font("Arial", Font.PLAIN, 18));
+        login.setText("<html><font color='white'>Login</font></html>");
+        login.setOpaque(false);
+
+
+//
+//        UIManager.put("Button.select", Color.red);
+//        roundButton login = new roundButton("Login");
+//        login.setBackground(Color.red);
+//        login.setOpaque(false);
+//        login.setBounds(225/2, 180, 225,30);
+
+
+
+        JLabel reg = new JLabel("<html>SIGN UP</html>");
+        reg.setOpaque(false);
+        reg.setBounds(195,112,120,30);
+        reg.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 25));
+        reg.setVerticalAlignment(SwingConstants.CENTER);
+        reg.setForeground(Color.WHITE);
+        reg.setBackground(null);
+
+
+
+
+
 
 
 
     //
     //    Adding elements
     //
-        add(close);
-        add(minimise);
-        add(loggingSign);
-        add(username);
-        add(uIcon);
-        add(password);
-        add(pIcon);
-        add(login);
-        add(reg);
-        add(showP);
+        background.add(close);
+        background.add(minimise);
+        background.add(loggingSign);
+        background.add(username);
+        background.add(uIcon);
+        background.add(password);
+        background.add(pIcon);
+        background.add(login);
+        background.add(reg);
+        background.add(showP);
         repaint();
+        background.repaint();
 
     }
 

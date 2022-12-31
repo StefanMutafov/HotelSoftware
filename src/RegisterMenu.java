@@ -93,7 +93,7 @@ public class RegisterMenu extends JFrame {
         //
         //TODO:When you didnt enter anythig say required and make borders red
         //
-        HintTextField username = new HintTextField("Username", 15);
+        HintTextField username = new HintTextField("Username", 15,15);
         username.setOpaque(false);
         username.setBounds(225/2, 105,225,30 );
 
@@ -107,7 +107,7 @@ public class RegisterMenu extends JFrame {
         //TODO
         // Add confirm passwoed
 
-        HintPassField password = new HintPassField("Password", 15);
+        HintPassField password = new HintPassField("Password", 15, 15);
         password.setOpaque(false);
         password.setBounds(225/2, 145, 225, 30);
 
@@ -146,31 +146,31 @@ public class RegisterMenu extends JFrame {
 
 
 
-        HintTextField fName = new HintTextField("First Name", 15);
+        HintTextField fName = new HintTextField("First Name", 15,15);
         fName.setOpaque(false);
         fName.setBounds(225/2, 185,225,30 );
 
 
 
-        HintTextField lName = new HintTextField("Last Name", 15);
+        HintTextField lName = new HintTextField("Last Name", 15,15);
         lName.setOpaque(false);
         lName.setBounds(225/2, 225,225,30 );
 
 
 
-        HintTextField eMail = new HintTextField("E_Mail",15);
+        HintTextField eMail = new HintTextField("E_Mail",15,15);
         eMail.setOpaque(false);
         eMail.setBounds(225/2, 265,225,30 );
 
 
 
-        HintTextField phone = new HintTextField("Phone Number",15);
+        HintTextField phone = new HintTextField("Phone Number",15,15);
         phone.setOpaque(false);
         phone.setBounds(225/2, 305,225,30 );
 
 
 
-        HintTextField secCont = new HintTextField("Second Contact", 15);
+        HintTextField secCont = new HintTextField("Second Contact", 15,15);
         secCont.setOpaque(false);
         secCont.setBounds(225/2, 345,225,30 );
 
