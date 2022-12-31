@@ -90,8 +90,9 @@ public class RegisterMenu extends JFrame {
         registerSign.setHorizontalAlignment(SwingConstants.CENTER);
         registerSign.setBackground(Color.BLUE);
 
-
-
+        //
+        //TODO:When you didnt enter anythig say required and make borders red
+        //
         HintTextField username = new HintTextField("Username", 15);
         username.setOpaque(false);
         username.setBounds(225/2, 105,225,30 );
@@ -103,7 +104,8 @@ public class RegisterMenu extends JFrame {
         exUser.setForeground(Color.RED);
 
 
-
+        //TODO
+        // Add confirm passwoed
 
         HintPassField password = new HintPassField("Password", 15);
         password.setOpaque(false);

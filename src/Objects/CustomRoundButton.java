@@ -7,9 +7,26 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 
 public class CustomRoundButton extends JLabel {
+    Color Idle = Color.GRAY, entered = Color.GRAY, clicked = Color.GRAY;
     private Shape shape;
     int roundX, roundY, x, y, wight, height;
-    public CustomRoundButton (int x,int y,int wight, int height,int roundX,int roundY){
+
+    public void setIdle(Color idle) {
+        Idle = idle;
+    }
+
+    public void setEntered(Color entered) {
+        this.entered = entered;
+    }
+
+    public void setClicked(Color clicked) {
+        this.clicked = clicked;
+    }
+
+    public CustomRoundButton (int x, int y, int wight, int height, int roundX, int roundY){
+        setHorizontalAlignment(SwingConstants.CENTER);
+        setVerticalAlignment(SwingConstants.CENTER);
+        this.setBackground(Idle);
 
         this.setBounds(x, y, wight, height);
         this.x = x;
@@ -31,12 +48,12 @@ public class CustomRoundButton extends JLabel {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                setBackground(Color.YELLOW);
+                setBackground(entered);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                setBackground(Color.RED);
+                setBackground(Idle);
             }
         });
     }

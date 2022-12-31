@@ -16,9 +16,8 @@ import java.util.Map;
 
 //Written by Stefan Mutafov
 public class LoginMenu extends JFrame {
-
     //Setting LoginMenu values
-    public LoginMenu(){
+    public LoginMenu() {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(450,550);
@@ -32,6 +31,13 @@ public class LoginMenu extends JFrame {
     }
 
     private void buildLoginMenu() {
+
+
+//        setLayout(new BorderLayout());
+//        JLabel background=new JLabel(new ImageIcon("icons/michael-sala-QkvMIG6knxY-unsplash.jpg"));
+//        add(background);
+//        background.setLayout(new FlowLayout());
+//        background.setLayout(null);
 
 
         JLabel close  = new JLabel("<html>X</html>");
@@ -118,7 +124,7 @@ public class LoginMenu extends JFrame {
         JLabel picLabel = new JLabel(new ImageIcon(myPicture));
         RoundJPanel p = new RoundJPanel( 0, 105, 38,38, 50, 50);
         p.add(picLabel);
-        add(p);
+        //add(p);
 
 
 
@@ -143,8 +149,9 @@ public class LoginMenu extends JFrame {
 
 
         CustomRoundButton  login = new CustomRoundButton(225/2, 180, 225, 30, 30,30);
-
-        login.setBackground(Color.RED);
+        login.setIdle(Color.GRAY);
+        login.setEntered(Color.WHITE);
+        login.setText("<html><font color='red'>Login</font></html>");
         login.setOpaque(false);
 
 
@@ -227,7 +234,6 @@ public class LoginMenu extends JFrame {
     //
     //    Adding elements
     //
-
         add(close);
         add(minimise);
         add(loggingSign);
@@ -239,6 +245,7 @@ public class LoginMenu extends JFrame {
         add(reg);
         add(showP);
         repaint();
+
     }
 
 
