@@ -39,11 +39,12 @@ public class CustomRoundButton extends JLabel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e){
+                setBackground(entered);
 
             }
             @Override
             public void mousePressed(MouseEvent e) {
-                super.mouseClicked(e);
+                setBackground(clicked);
             }
 
             @Override

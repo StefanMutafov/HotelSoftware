@@ -30,9 +30,10 @@ public class HintPassField extends JPasswordField {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                setFocusable(true);
-                setEchoChar(defaultt);
-                requestFocusInWindow();
+                    setFocusable(true);
+                    setEchoChar(defaultt);
+                    requestFocusInWindow();
+
             }
         });
 
