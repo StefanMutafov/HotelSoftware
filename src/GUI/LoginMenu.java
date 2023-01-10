@@ -293,6 +293,12 @@ public class LoginMenu extends JFrame {
                     if(check){
                         if(String.valueOf(password.getPassword()).equals(db.getPass(username.getText()))){
                             //LOGIN CODE
+                            if(db.getPerm(username.getText()) == 0){
+                                System.out.println(db.getPerm(username.getText()));
+                                new homePageClient();
+                                LoginMenu.super.dispose();
+                            }
+
                             System.out.println("Logged in");
                         }else{
                             wrongUP.setVisible(true);

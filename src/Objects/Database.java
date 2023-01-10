@@ -83,7 +83,13 @@ public class Database {
         return emails;
     }
 
-
+    public int getPerm(String user)throws SQLException{
+        ps = con.prepareStatement("select perm from users where username =?");
+        ps.setString(1, user);
+        rs = ps.executeQuery();
+        rs.next();
+        return rs.getInt(1);
+    }
     public void setPerm(String user, int perm)throws SQLException{
         ps = con.prepareStatement("update users set perm = ? where username = ? ");
         ps.setString(1, user);

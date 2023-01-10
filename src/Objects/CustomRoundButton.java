@@ -9,7 +9,15 @@ import java.awt.geom.RoundRectangle2D;
 public class CustomRoundButton extends JLabel {
     Color Idle = Color.GRAY, entered = Color.GRAY, clicked = Color.GRAY;
     private Shape shape;
+
+    Color borderC = getForeground();
+
     int roundX, roundY, x, y, wight, height;
+
+
+    public void setBorderColor(Color borderC) {
+        this.borderC = borderC;
+    }
 
     public void setIdle(Color idle) {
         Idle = idle;
@@ -66,7 +74,7 @@ public class CustomRoundButton extends JLabel {
         super.paintComponent(g);
     }
     protected void paintBorder(Graphics g) {
-        g.setColor(getForeground());
+        g.setColor(borderC);
         g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, roundX, roundY);
     }
     public boolean contains(int x, int y) {

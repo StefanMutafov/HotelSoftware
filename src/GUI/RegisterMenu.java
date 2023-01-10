@@ -34,6 +34,9 @@ public class RegisterMenu extends JFrame {
 
 
 
+
+
+
         JLabel background=new JLabel(new ImageIcon("icons/background5.jpg"));
         add(background);
         //background.setLayout(new FlowLayout());
