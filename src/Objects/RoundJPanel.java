@@ -6,6 +6,7 @@ import java.awt.geom.RoundRectangle2D;
 
 public class RoundJPanel extends JPanel {
     Shape shape;
+    Color borderColor = Color.BLACK;
     int roundX, roundY;
     public RoundJPanel(int x,int y,int width1,int height1 , int roundX,  int roundY){
         setBounds(x, y, width1, height1);
@@ -17,13 +18,17 @@ public class RoundJPanel extends JPanel {
     }
 
 
+    public void setBorderColor(Color c){
+        borderColor = c;
+    }
+
     protected void paintComponent(Graphics g) {
         g.setColor(getBackground());
         g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, roundX, roundY);
         super.paintComponent(g);
     }
     protected void paintBorder(Graphics g) {
-        g.setColor(getForeground());
+        g.setColor(borderColor);
         g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, roundX, roundY);
     }
     public boolean contains(int x, int y) {

@@ -283,8 +283,8 @@ public class LoginMenu extends JFrame {
                 wrongUP.setVisible(false);
                 try {
                     users = db.getUsernames();
-                    for(int i =0;i<users.size();i++){
-                        if(username.getText().equals(users.get(i))){
+                    for (String user : users) {
+                        if (username.getText().equals(user)) {
                             check = true;
                             break;
                         }
@@ -295,8 +295,10 @@ public class LoginMenu extends JFrame {
                             //LOGIN CODE
                             if(db.getPerm(username.getText()) == 0){
                                 System.out.println(db.getPerm(username.getText()));
-                                new homePageClient();
+                                new homePageClient(username.getText());
                                 LoginMenu.super.dispose();
+                            }else if(db.getPerm(username.getText()) ==1){
+                                new homePageAdmin(username.getText());
                             }
 
                             System.out.println("Logged in");

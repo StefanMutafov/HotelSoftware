@@ -9,9 +9,9 @@ import java.awt.event.MouseEvent;
 public class homePageAdmin extends JFrame {
     int posX=0,posY=0;
     JLabel background;
-
-    public homePageAdmin(){
-
+    String user;
+    public homePageAdmin(String username){
+        user = username;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280,854);
         setLayout(new BorderLayout());

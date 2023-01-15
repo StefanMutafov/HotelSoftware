@@ -1,5 +1,8 @@
 package Objects;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.*;
 import java.util.LinkedList;
 
@@ -31,20 +34,33 @@ public class Database {
             }
         }
 
-        public ResultSet get(String statement) throws SQLException {
-            ps = con.prepareStatement(statement);
+
+
+
+    public String getFirstName(String usename) throws SQLException{
+        ps = con.prepareStatement("Select fName from users where username = ?");
+        ps.setString(1, usename);
+        rs = ps.executeQuery();
+        rs.next();
+        return rs.getString(1);
+    }
+
+
+
+    public LinkedList<String> getCities() throws SQLException{
+            ps = con.prepareStatement("Select DISTINCT city from hotels");
             rs = ps.executeQuery();
-            return rs;
+        LinkedList<String> cities = new LinkedList<String>();
+        while(rs.next()){
+            cities.add(rs.getString(1));
 
         }
-
-    public ResultSet get(String statement, int id) throws SQLException {
-        ps = con.prepareStatement(statement);
-        ps.setInt(1, id);
-        rs = ps.executeQuery();
-        return rs;
+        return cities;
 
     }
+
+
+
         public void register(String user, String pass, String fName, String lName, String phone, String e_mail, String secCont, String rDate) throws SQLException {
             ps = con.prepareStatement("INSERT INTO users VALUES(?,?,?,?,?,?,?,?,?)" );
             ps.setString(1, user);
@@ -61,6 +77,37 @@ public class Database {
 
         }
 
+        public Blob getHotelIcon(int id)throws SQLException{
+            ps = con.prepareStatement("Select icon from hotels where id = ?");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            rs.next();
+            return rs.getBlob(1);
+
+        }
+
+        public String getHotelName(int id)throws SQLException{
+            ps = con.prepareStatement("Select hName from hotels where id = ?");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            rs.next();
+            return rs.getString(1);
+
+
+        }
+
+        public LinkedList<Integer> getHotelsIn(String city)throws SQLException{
+            ps = con.prepareStatement("Select id from hotels where city = ?");
+            ps.setString(1, city);
+            rs = ps.executeQuery();
+            LinkedList<Integer> hotels = new LinkedList<>();
+            while(rs.next()){
+                hotels.add(rs.getInt(1));
+
+            }
+
+            return hotels;
+        }
         public LinkedList<String> getUsernames() throws SQLException {
             ps = con.prepareStatement("select username from Users ");
             rs = ps.executeQuery();
@@ -90,6 +137,16 @@ public class Database {
         rs.next();
         return rs.getInt(1);
     }
+   public void setHotelIcon(File f, int id) throws SQLException, FileNotFoundException {
+       FileInputStream fs=new FileInputStream(f);
+
+       ps= con.prepareStatement("update hotels set icon = ? where id = ?");
+       ps.setBinaryStream(1,fs,(int)f.length());
+       ps.setInt(2, id);
+       ps.executeUpdate();
+
+   }
+
     public void setPerm(String user, int perm)throws SQLException{
         ps = con.prepareStatement("update users set perm = ? where username = ? ");
         ps.setString(1, user);
