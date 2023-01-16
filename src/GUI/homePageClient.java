@@ -275,6 +275,7 @@ int x,y;
                 names.get(i).setVerticalAlignment(SwingConstants.CENTER);
                 names.get(i).setText(db.getHotelName(hotels.get(i)));
 
+
                 hotelPanel.add(new RoundJPanel(20+i*210, 10, 200, 350, 100,100));
 
 
@@ -284,7 +285,7 @@ int x,y;
                 throw new RuntimeException(ex);
             }
 
-
+            hotelPanel.get(i).setLayout(null);
             hotelPanel.get(i).add(hotelPic.get(i));
             hotelPanel.get(i).add(names.get(i));
             hotelPanel.get(i).setBorderColor(new Color(0,0,0,0));
@@ -339,7 +340,7 @@ int x,y;
                     } catch (SQLException ex) {
                         throw new RuntimeException(ex);
                     }
-
+                    hotelPanel.get(i).setLayout(null);
                     hotelPanel.get(i).add(hotelPic.get(i));
                     hotelPanel.get(i).add(names.get(i));
                     hotelPanel.get(i).setBorderColor(new Color(0,0,0,0));
