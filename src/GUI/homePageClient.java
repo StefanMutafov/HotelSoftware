@@ -1,9 +1,6 @@
 package GUI;
 
-import Objects.CustomRoundButton;
-import Objects.Database;
-import Objects.RoundJLabel;
-import Objects.RoundJPanel;
+import Objects.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -227,6 +224,15 @@ int x,y;
 
     }
 
+
+
+
+
+
+
+
+
+
     public void setBookScreen() throws SQLException {
         background.removeAll();
 
@@ -383,7 +389,7 @@ int x,y;
 
                     for (int i = 0; i < hotelPic.size(); i++) {
 
-                        hotelPanel.get(i).setBounds(hotelPanel.get(i).getX() - 20, 10, 200, 350);
+                        hotelPanel.get(i).setBounds(hotelPanel.get(i).getX() - 100, 10, 200, 350);
 
                     }
                     hotelsSlide.repaint();
@@ -424,7 +430,7 @@ int x,y;
 
                     for (int i = 0; i < hotelPic.size(); i++) {
 
-                        hotelPanel.get(i).setBounds(hotelPanel.get(i).getX() + 20, 10, 200, 350);
+                        hotelPanel.get(i).setBounds(hotelPanel.get(i).getX() + 100, 10, 200, 350);
 
                     }
                     hotelsSlide.repaint();
@@ -432,8 +438,6 @@ int x,y;
             }
 
         });
-
-
 
 
 
