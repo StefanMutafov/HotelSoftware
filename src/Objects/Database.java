@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class Database {
     String db = "jdbc:mysql://127.0.0.1:3306/hotelsdb";
     String user = "root";
-    String pass = "St951659";
+    String pass = "StefanM951659";
     Connection con;
     PreparedStatement ps;
     ResultSet rs;

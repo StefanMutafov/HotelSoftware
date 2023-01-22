@@ -4,26 +4,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class CalendarUI extends JPanel {
     Calendar c = new GregorianCalendar();
-    //Calendar c = Calendar.getInstance();
+
+   // Calendar c = Calendar.getInstance();
 
     JLabel daysStart[][] = new RoundJLabel[6][7];
     RoundJLabel wDaysStart[] = new RoundJLabel[7];
     RoundJLabel daysEnd[][] = new RoundJLabel[6][7];
     RoundJLabel wDaysEnd[] = new RoundJLabel[7];
 
-
+    RoundJLabel year = new RoundJLabel(325,10, 90, 40, 0, 0);
     RoundJLabel headR = new RoundJLabel(472,10, 185, 40, 0, 0);
     RoundJLabel headL = new RoundJLabel(92,10, 185, 40, 0, 0);
         int[] clicked = {-1,-1};
         int[] clickedEnd = {-1,-1};
 
-        String[] wDays ={"M", "T", "W", "T", "F", "S", "S"};
-    String[] months ={"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "December"};
+        String[] wDays ={"Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"};
+    String[] months ={"January", "February", "March", "April", "May", "June", "July", "August", "September", "October","November" ,"December"};
     public CalendarUI(){
         setSize(750,300);
         setVisible(true);
@@ -33,18 +37,169 @@ public class CalendarUI extends JPanel {
 
     }
 
+
+        public Date getStartDate() throws ParseException {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            return formatter.parse(daysStart[clicked[0]][clicked[1]] + "/" + c.get(Calendar.MONTH)+1+ "/" +year.getText());
+
+        }
+
+
         private void updateCal(){
+            clicked[0] = -1;
+            clicked[1] = -1;
+            clickedEnd[0] = -1;
+            clickedEnd[1] = -1;
         headL.setText(months[c.get(Calendar.MONTH)]);
-        headR.setText(months[c.get(Calendar.MONTH)+1]);
+        if(c.get(Calendar.MONTH)<11) {
+            headR.setText(months[c.get(Calendar.MONTH) + 1]);
+        }else{
+            headR.setText(months[0]);
+        }
+        year.setText(String.valueOf(c.get(Calendar.YEAR)));
         c.set(Calendar.DATE,1);
+            for(int i =0; i<6;i++){
+                for(int j = 0; j<7;j++) {
+                    daysStart[i][j].setText("");
+                    daysEnd[i][j].setText("");
+                    daysStart[i][j].setBackground(Color.BLUE);
+                    daysEnd[i][j].setBackground(Color.BLUE);
+
+                }
+                }
+
+
+
+            //
+            //Left Cal
+            //
+
+//        if( c.get(Calendar.DAY_OF_WEEK)-2>=0) {
+//            for (int i = 0; i < c.get(Calendar.DAY_OF_WEEK) - 2; i++) {
+//
+//                daysStart[0][i].removeMouseListener(daysStart[0][i].getMouseListeners()[0]);
+//
+//            }
+//        }else{
+//
+//            for (int i = 0; i < c.get(Calendar.DAY_OF_WEEK) +5; i++) {
+//
+//                daysStart[0][i].removeMouseListener(daysStart[0][i].getMouseListeners()[0]);
+//
+//            }
+//        }
+
+        for(int i = c.get(Calendar.DAY_OF_WEEK)-2; i<7;i++){
+            if(i<0){i+=7;}
+            daysStart[0][i].setText(String.valueOf(c.get(Calendar.DATE)));
+            c.add(Calendar.DATE, 1);
+
+        }
+            for(int i =1; i<6;i++){
+                for(int j = 0; j<7;j++) {
+                    if(c.get(Calendar.DATE) <= c.getActualMaximum(Calendar.DAY_OF_MONTH) && c.get(Calendar.DATE) !=1){
+                        daysStart[i][j].setText(String.valueOf(c.get(Calendar.DATE)));
+
+                            c.add(Calendar.DATE, 1);
+
+                    }else{
+                        //daysStart[i][j].removeMouseListener(daysStart[i][j].getMouseListeners()[0]);
+
+                    }
+
+                }
+
+                }
+            //c.add(Calendar.MONTH, -1);
+
+
+            //
+            ///Builging right cal
+            //
+
+//            if( c.get(Calendar.DAY_OF_WEEK)-2>=0) {
+//                for (int i = 0; i < c.get(Calendar.DAY_OF_WEEK) - 2; i++) {
+//
+//                    daysEnd[0][i].removeMouseListener(daysEnd[0][i].getMouseListeners()[0]);
+//
+//                }
+//            }else{
+//
+//                for (int i = 0; i < c.get(Calendar.DAY_OF_WEEK) +5; i++) {
+//
+//                    daysEnd[0][i].removeMouseListener(daysEnd[0][i].getMouseListeners()[0]);
+//
+//                }
+//            }
+
+            for(int i = c.get(Calendar.DAY_OF_WEEK)-2; i<7;i++){
+                if(i<0){i+=7;}
+                daysEnd[0][i].setText(String.valueOf(c.get(Calendar.DATE)));
+                c.add(Calendar.DATE, 1);
+
+            }
+            for(int i =1; i<6;i++){
+                for(int j = 0; j<7;j++) {
+                    if(c.get(Calendar.DATE) <= c.getActualMaximum(Calendar.DAY_OF_MONTH) && c.get(Calendar.DATE) !=1){
+                        daysEnd[i][j].setText(String.valueOf(c.get(Calendar.DATE)));
+
+                        c.add(Calendar.DATE, 1);
+
+                    }else{
+                       // daysEnd[i][j].removeMouseListener(daysEnd[i][j].getMouseListeners()[0]);
+
+                    }
+
+                }
+
+            }
+            c.add(Calendar.MONTH, -2);
 
 
 
         }
 
     private void buildGUI(){
+        removeAll();
 
+        CustomRoundButton next = new CustomRoundButton(700,10, 40, 40, 40, 20);
+        next.setText(">");
+        next.setClicked(Color.BLUE);
+        next.setIdle(Color.WHITE);
+        next.setEntered(Color.GRAY);
+        next.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(c.get(Calendar.MONTH)<11) {
+                    c.add(Calendar.MONTH, 1);
+                }else{
+                    c.set(Calendar.MONTH,0);
+                    c.add(Calendar.YEAR,1);
+                }
+                updateCal();
+            }
+        });
+        CustomRoundButton prev = new CustomRoundButton(10,10, 40, 40, 40, 20);
+        prev.setText("<");
+        prev.setClicked(Color.BLUE);
+        prev.setIdle(Color.WHITE);
+        prev.setEntered(Color.GRAY);
+        prev.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(c.get(Calendar.MONTH)>0) {
+                    c.add(Calendar.MONTH, -1);
+                }else{
+                    c.set(Calendar.MONTH,11);
+                    c.add(Calendar.YEAR,-1);
+                }
+                updateCal();
+            }
+        });
+        year.setForeground(Color.WHITE);
+        year.setBackground(Color.BLUE);
         headR.setBackground(Color.BLUE);
+        headR.setForeground(Color.WHITE);
         headR.setOpaque(false);
         for(int i =0;i<7;i++){
             wDaysEnd[i] = new RoundJLabel(460+i*30,70,30,30,30,30);
@@ -59,6 +214,7 @@ public class CalendarUI extends JPanel {
                 daysEnd[i][j]= new RoundJLabel(460+j*30, 110+i*30, 30,30,30,30);
                 daysEnd[i][j].setOpaque(false);
                 daysEnd[i][j].setBackground(Color.BLUE);
+                daysEnd[i][j].setForeground(Color.WHITE);
                 add(daysEnd[i][j]);
                 int finalI1 = i;
                 int finalJ1 = j;
@@ -81,6 +237,7 @@ public class CalendarUI extends JPanel {
                             clickedEnd [1] = finalJ1;
                         }
                         label.repaint();
+
                     }
 
                     @Override
@@ -114,6 +271,7 @@ public class CalendarUI extends JPanel {
 
 
         headL.setBackground(Color.BLUE);
+        headL.setForeground(Color.WHITE);
         headL.setOpaque(false);
         for(int i =0;i<7;i++){
             wDaysStart[i] = new RoundJLabel(80+i*30,70,30,30,30,30);
@@ -128,6 +286,7 @@ public class CalendarUI extends JPanel {
                 daysStart[i][j]= new RoundJLabel(80+j*30, 110+i*30, 30,30,30,30);
                 daysStart[i][j].setOpaque(false);
                 daysStart[i][j].setBackground(Color.BLUE);
+                daysStart[i][j].setForeground(Color.WHITE);
                 add(daysStart[i][j]);
                 int finalI = i;
                 int finalJ = j;
@@ -150,6 +309,7 @@ public class CalendarUI extends JPanel {
                             clicked[1] = finalJ;
                         }
                         label.repaint();
+
                     }
 
                     @Override
@@ -179,7 +339,9 @@ public class CalendarUI extends JPanel {
             }
 
         }
-
+        add(year);
+        add(next);
+        add(prev);
         add(headR);
         add(headL);
         updateCal();
