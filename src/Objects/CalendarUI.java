@@ -32,7 +32,7 @@ public class CalendarUI extends JPanel {
         setSize(640,300);
         setVisible(true);
         setLayout(null);
-        setBackground(new Color(70,70,70));
+        setBackground(new Color(0,0,0));
         buildGUI();
 
     }

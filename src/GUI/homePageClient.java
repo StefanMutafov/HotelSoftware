@@ -297,6 +297,22 @@ int x,y;
             hotelPanel.get(i).add(hotelPic.get(i));
             hotelPanel.get(i).add(names.get(i));
             hotelPanel.get(i).setBorderColor(new Color(0,0,0,0));
+            hotelPanel.get(i).addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    super.mouseEntered(e);
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    super.mouseExited(e);
+                }
+            });
             hotelsSlide.add(hotelPanel.get(i));
         }
         hotelsSlide.repaint();
@@ -451,6 +467,10 @@ int x,y;
         people.setBounds(680, 500, 400, 80);
 
 
+        addMenu rooms = new addMenu("Rooms");
+        rooms.setBounds(680, 600, 400, 80);
+
+
 
 
 
@@ -487,6 +507,7 @@ int x,y;
         background.add(cities);
         background.add(cal);
         background.add(people);
+        background.add(rooms);
         repaint();
         background.repaint();
         hotelsSlide.repaint();
