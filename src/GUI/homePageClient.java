@@ -13,6 +13,8 @@ public class homePageClient extends JFrame {
 
 //TODO: Remove the font from the icons
 int x,y;
+
+    CalendarUI cal = new CalendarUI();
     Database db = new Database();
     int posX=0,posY=0;
     JLabel background;
@@ -441,6 +443,18 @@ int x,y;
 
 
 
+       //Adding calendar
+
+        cal.setBounds(20, 450, 640, 300);
+
+
+
+
+
+
+
+
+
         //
         //Position tester
         //
@@ -468,6 +482,7 @@ int x,y;
         background.add(right);
         background.add(hotelsSlide);
         background.add(cities);
+        background.add(cal);
         repaint();
         background.repaint();
         hotelsSlide.repaint();
