@@ -447,6 +447,9 @@ int x,y;
 
         cal.setBounds(20, 450, 640, 300);
 
+        addMenu people = new addMenu("People");
+        people.setBounds(680, 500, 400, 80);
+
 
 
 
@@ -483,6 +486,7 @@ int x,y;
         background.add(hotelsSlide);
         background.add(cities);
         background.add(cal);
+        background.add(people);
         repaint();
         background.repaint();
         hotelsSlide.repaint();
