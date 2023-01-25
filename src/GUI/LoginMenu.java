@@ -161,7 +161,8 @@ public class LoginMenu extends JFrame {
 
 
         ///Spacer for the textarea
-        RoundJLabel spacerU = new RoundJLabel(125, 150, 330, 50, 50, 50);
+        RoundJLabel spacerU = new RoundJLabel();
+        spacerU.setBounds(125, 150, 330, 50, 50, 50);
         spacerU.setOpaque(false);
         spacerU.setBackground(new Color(0,0,0,75));
         background.add(spacerU);
@@ -200,7 +201,8 @@ public class LoginMenu extends JFrame {
 
 
         //Spacer for password
-        RoundJLabel spacerP = new RoundJLabel(125, 230, 330, 50, 50, 50);
+        RoundJLabel spacerP = new RoundJLabel();
+        spacerP.setBounds(125, 230, 330, 50, 50, 50);
         spacerP.setOpaque(false);
         spacerP.setBackground(new Color(0,0,0,70));
         background.add(spacerP);
@@ -226,7 +228,8 @@ public class LoginMenu extends JFrame {
 
 
 
-        JLabel showP = new RoundJLabel(295, 9, 32, 32, 32,32);
+        RoundJLabel showP = new RoundJLabel();
+        showP.setBounds(295, 9, 32, 32, 32,32);
         showP.setIcon(new ImageIcon("icons/icons8-blind-32.png"));
         showP.setBackground(Color.WHITE);
         showP.setOpaque(false);
@@ -267,7 +270,8 @@ public class LoginMenu extends JFrame {
 
 
 
-        CustomRoundButton  login = new CustomRoundButton(65, 330, 390, 50, 50,50);
+        CustomRoundButton  login = new CustomRoundButton();
+        login.setBounds(65, 330, 390, 50, 50,50);
         login.setIdle(new Color(16, 88, 204));
         login.setEntered(new Color(7, 51, 122));
         login.setClicked(new Color(10, 31, 46));

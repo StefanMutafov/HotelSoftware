@@ -13,7 +13,8 @@ public class homePageClient extends JFrame {
 
 //TODO: Remove the font from the icons
 int x,y;
-
+        int selectedHotel;
+        int clickedPanel = -1;
     CalendarUI cal = new CalendarUI();
     Database db = new Database();
     int posX=0,posY=0;
@@ -134,7 +135,8 @@ int x,y;
         dashboard.setBackground(new Color(20, 100, 145));
 
 
-        CustomRoundButton book =  new CustomRoundButton(20, 60, 160,80, 10, 10 );
+        CustomRoundButton book =  new CustomRoundButton();
+        book.setBounds(20, 60, 160,80, 10, 10 );
         book.setIdle(new Color(20, 100, 145));
         book.setHorizontalAlignment(JLabel.CENTER);
         JLabel bookIcon = new JLabel(new ImageIcon("icons/booking.png"));
@@ -160,7 +162,8 @@ int x,y;
 
 
 
-        CustomRoundButton yourBookings =  new CustomRoundButton(20, 160, 160,80, 10, 10 );
+        CustomRoundButton yourBookings =  new CustomRoundButton();
+        yourBookings.setBounds(20, 160, 160,80, 10, 10 );
         yourBookings.setIdle(new Color(20, 100, 145));
         yourBookings.setHorizontalAlignment(JLabel.CENTER);
         JLabel bookingsIcon = new JLabel(new ImageIcon("icons/luggage.png"));
@@ -176,7 +179,8 @@ int x,y;
 
 
 
-        CustomRoundButton logout =  new CustomRoundButton(20, 600, 160,80, 10, 10 );
+        CustomRoundButton logout =  new CustomRoundButton();
+        logout.setBounds(20, 600, 160,80, 10, 10 );
         logout.setIdle(new Color(20, 100, 145));
         logout.setHorizontalAlignment(JLabel.CENTER);
         JLabel logoutIcon = new JLabel(new ImageIcon("icons/logout.png"));
@@ -261,6 +265,7 @@ int x,y;
         cities.setBounds(20,200, 230, 100);
         hotelsSlide.removeAll();
         LinkedList<Integer> hotels = db.getHotelsIn(String.valueOf(cities.getSelectedItem()));
+        System.out.println(hotels.size());
 
         LinkedList<RoundJPanel> hotelPanel = new LinkedList<>();
         LinkedList<RoundJLabel> hotelPic = new LinkedList<>();
@@ -276,9 +281,13 @@ int x,y;
                     byte bt[] = b.getBytes(1, (int) b.length());
                     img = Toolkit.getDefaultToolkit().createImage(bt);
                 }
-                hotelPic.add(new RoundJLabel(1, 1, 200, 300, 100,100));
-                 names.add(new  RoundJLabel(0,315,200,30,200,30));
-                names.get(i).setBackground(new Color(0,0,0,0));
+                RoundJLabel r = new RoundJLabel();
+                r.setBounds(10, 10, 180, 290, 100,100);
+                hotelPic.add(r);
+                RoundJLabel r1 = new RoundJLabel();
+                r1.setBounds(0,315,200,30,200,30);
+                 names.add(r1);
+                names.get(i).setBackground(new Color(0,0,0, 0));
                 names.get(i).setHorizontalAlignment(SwingConstants.CENTER);
                 names.get(i).setVerticalAlignment(SwingConstants.CENTER);
                 names.get(i).setText(db.getHotelName(hotels.get(i)));
@@ -296,11 +305,22 @@ int x,y;
             hotelPanel.get(i).setLayout(null);
             hotelPanel.get(i).add(hotelPic.get(i));
             hotelPanel.get(i).add(names.get(i));
+            hotelPanel.get(i).setBackground(new Color(129, 166, 235));
             hotelPanel.get(i).setBorderColor(new Color(0,0,0,0));
+            int finalI = i;
+            clickedPanel = -1;
             hotelPanel.get(i).addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    super.mouseClicked(e);
+                    if(clickedPanel!=-1){hotelPanel.get(clickedPanel).setBackground(new Color(0,0,0,0));}
+                    clickedPanel = finalI;
+                    hotelPanel.get(finalI).setBackground(Color.black);
+                    try {
+                        selectedHotel = db.getHotelsIn(String.valueOf(cities.getSelectedItem())).get(finalI);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    System.out.println(selectedHotel);
                 }
 
                 @Override
@@ -349,8 +369,12 @@ int x,y;
                         byte bt[] = b.getBytes(1, (int) b.length());
                          img = Toolkit.getDefaultToolkit().createImage(bt);
                     }
-                        hotelPic.add(new RoundJLabel(1, 1, 200, 300, 100,100));
-                        names.add(new  RoundJLabel(0,315,200,30,200,30));
+                        RoundJLabel rl = new RoundJLabel();
+                    rl.setBounds(10, 10, 180, 290, 100,100);
+                        hotelPic.add(rl);
+                        RoundJLabel rl1 = new RoundJLabel();
+                        rl1.setBounds(0,315,200,30,200,30);
+                        names.add(rl1);
                         names.get(i).setBackground(new Color(0,0,0,0));
                         names.get(i).setHorizontalAlignment(SwingConstants.CENTER);
                         names.get(i).setVerticalAlignment(SwingConstants.CENTER);
@@ -368,6 +392,36 @@ int x,y;
                     hotelPanel.get(i).add(hotelPic.get(i));
                     hotelPanel.get(i).add(names.get(i));
                     hotelPanel.get(i).setBorderColor(new Color(0,0,0,0));
+                    hotelPanel.get(i).setBackground(new Color(129, 166, 235));
+                    int finalI = i;
+                    clickedPanel = -1;
+                    hotelPanel.get(i).addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            if(clickedPanel!=-1){hotelPanel.get(clickedPanel).setBackground(new Color(129, 166, 235));}
+                            clickedPanel = finalI;
+                            hotelPanel.get(finalI).setBackground(Color.black);
+                            try {
+                                selectedHotel = db.getHotelsIn(String.valueOf(cities.getSelectedItem())).get(finalI);
+                            } catch (SQLException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                            System.out.println(selectedHotel);
+                        }
+
+                        @Override
+                        public void mouseEntered(MouseEvent e) {
+                            super.mouseEntered(e);
+                        }
+
+                        @Override
+                        public void mouseExited(MouseEvent e) {
+                            super.mouseExited(e);
+                        }
+                    });
+
+
+
                     hotelsSlide.add(hotelPanel.get(i));
                 }
                 hotelsSlide.repaint();
@@ -375,7 +429,8 @@ int x,y;
             }
         });
 
-        CustomRoundButton right = new CustomRoundButton(760, 434, 64, 64, 100, 100);
+        CustomRoundButton right = new CustomRoundButton();
+        right.setBounds(760, 434, 64, 64, 100, 100);
         //right.setOpaque(true)
         right.setIcon(new ImageIcon("icons/next.png"));
         right.setClicked(new Color(0,0,0,20));
@@ -418,7 +473,8 @@ int x,y;
         });
 
 
-        CustomRoundButton left = new CustomRoundButton(690, 434, 64, 64, 100, 100);
+        CustomRoundButton left = new CustomRoundButton();
+        left.setBounds(690, 434, 64, 64, 100, 100);
         //right.setOpaque(true)
         left.setIcon(new ImageIcon("icons/previous.png"));
         left.setClicked(new Color(0,0,0,20));
@@ -464,11 +520,11 @@ int x,y;
         cal.setBounds(20, 450, 640, 300);
 
         addMenu people = new addMenu("People");
-        people.setBounds(680, 500, 400, 80);
+        people.setBounds(20,310, 230, 50);
 
 
         addMenu rooms = new addMenu("Rooms");
-        rooms.setBounds(680, 600, 400, 80);
+        rooms.setBounds(20,380, 230, 50);
 
 
 

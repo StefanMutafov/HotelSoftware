@@ -31,18 +31,18 @@ public class CustomRoundButton extends JLabel {
         this.clicked = clicked;
     }
 
-    public CustomRoundButton (int x, int y, int wight, int height, int roundX, int roundY){
+    public CustomRoundButton (){
         setHorizontalAlignment(SwingConstants.CENTER);
         setVerticalAlignment(SwingConstants.CENTER);
         this.setBackground(Idle);
 
-        this.setBounds(x, y, wight, height);
-        this.x = x;
-        this.y = y;
-        this.wight = wight;
-        this.height = height;
-        this.roundX = roundX;
-        this.roundY = roundY;
+//        this.setBounds(x, y, wight, height);
+//        this.x = x;
+//        this.y = y;
+//        this.wight = wight;
+//        this.height = height;
+//        this.roundX = roundX;
+//        this.roundY = roundY;
 //TODO: Make it usable in every case
         this.addMouseListener(new MouseAdapter() {
             @Override
@@ -65,6 +65,17 @@ public class CustomRoundButton extends JLabel {
                 setBackground(Idle);
             }
         });
+    }
+
+    public void setBounds(int x, int y, int width, int height, int roundX, int roundY){
+        super.setBounds(x, y, width, height);
+        this.x = x;
+        this.y = y;
+        this.wight = width;
+        this.height = height;
+        this.roundX = roundX;
+        this.roundY = roundY;
+
     }
 
 

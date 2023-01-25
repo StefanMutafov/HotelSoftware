@@ -8,20 +8,29 @@ import java.awt.geom.RoundRectangle2D;
 
 public class RoundJLabel extends JLabel {
     private Shape shape;
-    int roundX, roundY, x, y, wight, height;
+    int roundX=0, roundY=0, x=0, y=0, wight=0, height=0;
 
 
-    public RoundJLabel (int x, int y, int wight, int height, int roundX, int roundY){
+    public RoundJLabel (){
         setHorizontalAlignment(SwingConstants.CENTER);
         setVerticalAlignment(SwingConstants.CENTER);
-        this.setBounds(x, y, wight, height);
+        //this.setBounds(x, y, wight, height);
 //        this.x = x;
 //        this.y = y;
 //        this.wight = wight;
 //        this.height = height;
+//        this.roundX = roundX;
+//        this.roundY = roundY;
+    }
+
+    public void setBounds(int x, int y, int width, int height, int roundX, int roundY){
+        super.setBounds(x, y, width, height);
         this.roundX = roundX;
         this.roundY = roundY;
+
+
     }
+
 
 
     protected void paintComponent(Graphics g) {

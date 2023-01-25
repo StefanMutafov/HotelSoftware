@@ -161,7 +161,8 @@ public class RegisterMenu extends JFrame {
         registerSign.setBackground(null);
 
 
-        RoundJLabel spacerU = new RoundJLabel(65, 140, 390, 40, 40, 40);
+        RoundJLabel spacerU = new RoundJLabel();
+        spacerU.setBounds(65, 140, 390, 40, 40, 40);
         spacerU.setOpaque(false);
         spacerU.setBackground(new Color(0,0,0,75));
 
@@ -173,7 +174,8 @@ public class RegisterMenu extends JFrame {
         username.setBounds(15, 0, 360, 40); // relative to spacerU
         spacerU.add(username);
 
-        JLabel userE = new RoundJLabel(355, 5, 30, 30, 30,30);
+        RoundJLabel userE = new RoundJLabel();
+        userE.setBounds(355, 5, 30, 30, 30,30);
         userE.setIcon(new ImageIcon("icons/icons8-high-importance-26.png"));
         userE.setBackground(Color.WHITE);
         userE.setOpaque(false);
@@ -185,7 +187,8 @@ public class RegisterMenu extends JFrame {
 
 
 
-        RoundJLabel spacerP = new RoundJLabel(65, 200, 390, 40, 40, 40);
+        RoundJLabel spacerP = new RoundJLabel();
+        spacerP.setBounds(65, 200, 390, 40, 40, 40);
         spacerP.setOpaque(false);
         spacerP.setBackground(new Color(0,0,0,70));
 
@@ -198,7 +201,8 @@ public class RegisterMenu extends JFrame {
 
 
 
-        RoundJLabel spacerPC = new RoundJLabel(65, 260, 390, 40, 40, 40);
+        RoundJLabel spacerPC = new RoundJLabel();
+        spacerPC.setBounds(65, 260, 390, 40, 40, 40);
         spacerPC.setOpaque(false);
         spacerPC.setBackground(new Color(0,0,0,70));
 
@@ -209,7 +213,8 @@ public class RegisterMenu extends JFrame {
         passwordC.setOpaque(false);
         spacerPC.add(passwordC);
 
-        JLabel passE = new RoundJLabel(355, 5, 30, 30, 30,30);
+        RoundJLabel passE = new RoundJLabel();
+        passE.setBounds(355, 5, 30, 30, 30,30);
         passE.setIcon(new ImageIcon("icons/icons8-high-importance-26.png"));
         passE.setBackground(Color.WHITE);
         passE.setOpaque(false);
@@ -224,7 +229,8 @@ public class RegisterMenu extends JFrame {
 
 
 
-        JLabel showP = new RoundJLabel(353, 9, 32, 22, 32,32);
+        RoundJLabel showP = new RoundJLabel();
+        showP.setBounds(353, 9, 32, 22, 32,32);
         showP.setIcon(new ImageIcon("icons/icons8-blind-32.png"));
         showP.setBackground(Color.WHITE);
         showP.setOpaque(false);
@@ -265,7 +271,8 @@ public class RegisterMenu extends JFrame {
 
 
 
-        RoundJLabel spacerFN = new RoundJLabel(65, 320, 190, 40, 40, 40);
+        RoundJLabel spacerFN = new RoundJLabel();
+        spacerFN.setBounds(65, 320, 190, 40, 40, 40);
         spacerFN.setOpaque(false);
         spacerFN.setBackground(new Color(0,0,0,70));
 
@@ -277,7 +284,8 @@ public class RegisterMenu extends JFrame {
         fName.setBounds(15, 0, 160, 40);
         spacerFN.add(fName);
 
-        JLabel fnameE = new RoundJLabel(155, 5, 30, 30, 30,30);
+        RoundJLabel fnameE = new RoundJLabel();
+        fnameE.setBounds(155, 5, 30, 30, 30,30);
         fnameE.setIcon(new ImageIcon("icons/icons8-high-importance-26.png"));
         fnameE.setBackground(Color.WHITE);
         fnameE.setOpaque(false);
@@ -290,7 +298,8 @@ public class RegisterMenu extends JFrame {
 
 
 
-        RoundJLabel spacerLN = new RoundJLabel(265, 320, 190, 40, 40, 40);
+        RoundJLabel spacerLN = new RoundJLabel();
+        spacerLN.setBounds(265, 320, 190, 40, 40, 40);
         spacerLN.setOpaque(false);
         spacerLN.setBackground(new Color(0,0,0,70));
 
@@ -301,7 +310,8 @@ public class RegisterMenu extends JFrame {
         lName.setBounds(15, 0, 160, 40);
         spacerLN.add(lName);
 
-        JLabel lnameE = new RoundJLabel(155, 5, 30, 30, 30,30);
+        RoundJLabel lnameE = new RoundJLabel();
+        lnameE.setBounds(155, 5, 30, 30, 30,30);
         lnameE.setIcon(new ImageIcon("icons/icons8-high-importance-26.png"));
         lnameE.setBackground(Color.WHITE);
         lnameE.setOpaque(false);
@@ -314,7 +324,8 @@ public class RegisterMenu extends JFrame {
 
 
 
-        RoundJLabel spacerEM = new RoundJLabel(65, 380, 390, 40, 40, 40);
+        RoundJLabel spacerEM = new RoundJLabel();
+        spacerEM.setBounds(65, 380, 390, 40, 40, 40);
         spacerEM.setOpaque(false);
         spacerEM.setBackground(new Color(0,0,0,70));
 
@@ -325,7 +336,8 @@ public class RegisterMenu extends JFrame {
         eMail.setBounds(15, 0, 360, 40);
         spacerEM.add(eMail);
 
-        JLabel emailE = new RoundJLabel(355, 5, 30, 30, 30,30);
+        RoundJLabel emailE = new RoundJLabel();
+        emailE.setBounds(355, 5, 30, 30, 30,30);
         emailE.setIcon(new ImageIcon("icons/icons8-high-importance-26.png"));
         emailE.setBackground(Color.WHITE);
         emailE.setOpaque(false);
@@ -338,7 +350,8 @@ public class RegisterMenu extends JFrame {
 
 
 
-        RoundJLabel spacerPH = new RoundJLabel(65, 440, 390, 40, 40, 40);
+        RoundJLabel spacerPH = new RoundJLabel();
+        spacerPH.setBounds(65, 440, 390, 40, 40, 40);
         spacerPH.setOpaque(false);
         spacerPH.setBackground(new Color(0,0,0,70));
 
@@ -349,7 +362,8 @@ public class RegisterMenu extends JFrame {
         phone.setBounds(15, 0, 360, 40);
         spacerPH.add(phone);
 
-        JLabel phoneE = new RoundJLabel(355, 5, 30, 30, 30,30);
+        RoundJLabel phoneE = new RoundJLabel();
+        phoneE.setBounds(355, 5, 30, 30, 30,30);
         phoneE.setIcon(new ImageIcon("icons/icons8-high-importance-26.png"));
         phoneE.setBackground(Color.WHITE);
         phoneE.setOpaque(false);
@@ -362,7 +376,8 @@ public class RegisterMenu extends JFrame {
 
 
 
-        RoundJLabel spacerSC = new RoundJLabel(65, 500, 390, 40, 40, 40);
+        RoundJLabel spacerSC = new RoundJLabel();
+        spacerSC.setBounds(65, 500, 390, 40, 40, 40);
         spacerSC.setOpaque(false);
         spacerSC.setBackground(new Color(0,0,0,70));
 
@@ -375,7 +390,8 @@ public class RegisterMenu extends JFrame {
 
 
 
-        CustomRoundButton register = new CustomRoundButton(65, 580, 390, 40, 40,40);
+        CustomRoundButton register = new CustomRoundButton();
+        register.setBounds(65, 580, 390, 40, 40,40);
         register.setIdle(new Color(16, 88, 204));
         register.setEntered(new Color(7, 51, 122));
         register.setBackground(new Color(16, 88, 204));

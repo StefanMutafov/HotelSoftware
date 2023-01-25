@@ -9,8 +9,8 @@ import java.awt.event.MouseEvent;
 
 public class addMenu extends JPanel {
     JLabel counter = new JLabel();
-    CustomRoundButton plus = new CustomRoundButton(300, 0, 80, 80, 80, 80);;
-    CustomRoundButton minus = new CustomRoundButton(20, 0, 80, 80, 80, 80);;
+    CustomRoundButton plus = new CustomRoundButton();
+    CustomRoundButton minus = new CustomRoundButton();
         String text;
         int count =0;
         String fText;
@@ -27,8 +27,8 @@ public class addMenu extends JPanel {
         public void setBounds(int x, int y, int width, int height){
             super.setBounds(x, y, width, height);
             counter.setBounds(width/4, 0, width/2,height);
-//            plus = new CustomRoundButton(width/4*3, 0, width/4, height, width/4, height);
-//            minus = new CustomRoundButton(0, 0, width/4, height, width/4, height);
+            plus.setBounds(width/4*3, 0, width/4, height, width/4, height);
+           minus.setBounds(0, 0, width/4, height, width/4, height);
             System.out.println(width/4);
             System.out.println(height);
 
@@ -39,6 +39,8 @@ public class addMenu extends JPanel {
         }
 
         private void buildGUI() {
+           // plus.setBounds(300, 0, 80, 80, 80, 80);
+           // minus.setBounds(20, 0, 80, 80, 80, 80);
           //  JLabel counter = new JLabel();
           //  counter.setBounds(width/4, 0, width/2,height);
             counter.setOpaque(true);

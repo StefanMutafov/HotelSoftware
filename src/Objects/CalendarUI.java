@@ -15,14 +15,15 @@ public class CalendarUI extends JPanel {
 
    // Calendar c = Calendar.getInstance();
 
-    JLabel daysStart[][] = new RoundJLabel[6][7];
+    RoundJLabel daysStart[][] = new RoundJLabel[6][7];
     RoundJLabel wDaysStart[] = new RoundJLabel[7];
     RoundJLabel daysEnd[][] = new RoundJLabel[6][7];
     RoundJLabel wDaysEnd[] = new RoundJLabel[7];
 
-    RoundJLabel year = new RoundJLabel(270,10, 90, 40, 0, 0);
-    RoundJLabel headR = new RoundJLabel(395,10, 185, 40, 0, 0);
-    RoundJLabel headL = new RoundJLabel(55,10, 185, 40, 0, 0);
+    RoundJLabel year = new RoundJLabel();
+
+    RoundJLabel headR = new RoundJLabel();
+    RoundJLabel headL = new RoundJLabel();
         int[] clicked = {-1,-1};
         int[] clickedEnd = {-1,-1};
 
@@ -39,6 +40,7 @@ public class CalendarUI extends JPanel {
 
 
         public String getStartDate()  {
+
             String date = new String(daysStart[clicked[0]][clicked[1]].getText());
             String month = new String(String.valueOf(c.get(Calendar.MONTH)+1));
             String year = new String(String.valueOf(c.get(Calendar.YEAR)));
@@ -181,8 +183,12 @@ public class CalendarUI extends JPanel {
 
     private void buildGUI(){
         removeAll();
+        year.setBounds(270,10, 90, 40, 0, 0);
+        headR.setBounds(395,10, 185, 40, 0, 0);
+        headL.setBounds(55,10, 185, 40, 0, 0);
 
-        CustomRoundButton next = new CustomRoundButton(590,10, 40, 40, 40, 20);
+        CustomRoundButton next = new CustomRoundButton();
+        next.setBounds(590,10, 40, 40, 40, 20);
         next.setText(">");
         next.setClicked(Color.BLUE);
         next.setIdle(Color.WHITE);
@@ -199,7 +205,8 @@ public class CalendarUI extends JPanel {
                 updateCal();
             }
         });
-        CustomRoundButton prev = new CustomRoundButton(10,10, 40, 40, 40, 20);
+        CustomRoundButton prev = new CustomRoundButton();
+        prev.setBounds(10,10, 40, 40, 40, 20);
         prev.setText("<");
         prev.setClicked(Color.BLUE);
         prev.setIdle(Color.WHITE);
@@ -222,7 +229,8 @@ public class CalendarUI extends JPanel {
         headR.setForeground(Color.WHITE);
         headR.setOpaque(false);
         for(int i =0;i<7;i++){
-            wDaysEnd[i] = new RoundJLabel(385+i*30,70,30,30,30,30);
+            wDaysEnd[i] = new RoundJLabel();
+            wDaysEnd[i].setBounds(385+i*30,70,30,30,30,30);
             wDaysEnd[i].setHorizontalAlignment(SwingConstants.CENTER);
             wDaysEnd[i].setVerticalAlignment(SwingConstants.CENTER);
             wDaysEnd[i].setBackground(Color.RED);
@@ -233,7 +241,8 @@ public class CalendarUI extends JPanel {
 
         for(int i =0; i<6;i++){
             for(int j = 0; j<7;j++){
-                daysEnd[i][j]= new RoundJLabel(385+j*30, 110+i*30, 30,30,30,30);
+                daysEnd[i][j]= new RoundJLabel();
+                daysEnd[i][j].setBounds(385+j*30, 110+i*30, 30,30,30,30);
                 daysEnd[i][j].setHorizontalAlignment(SwingConstants.CENTER);
                 daysEnd[i][j].setVerticalAlignment(SwingConstants.CENTER);
                 daysEnd[i][j].setOpaque(false);
@@ -299,7 +308,8 @@ public class CalendarUI extends JPanel {
         headL.setForeground(Color.WHITE);
         headL.setOpaque(false);
         for(int i =0;i<7;i++){
-            wDaysStart[i] = new RoundJLabel(45+i*30,70,30,30,30,30);
+            wDaysStart[i] = new RoundJLabel();
+            wDaysStart[i].setBounds(45+i*30,70,30,30,30,30);
             wDaysStart[i].setHorizontalAlignment(SwingConstants.CENTER);
             wDaysStart[i].setVerticalAlignment(SwingConstants.CENTER);
             wDaysStart[i].setBackground(Color.RED);
@@ -310,7 +320,8 @@ public class CalendarUI extends JPanel {
 
         for(int i =0; i<6;i++){
             for(int j = 0; j<7;j++){
-                daysStart[i][j]= new RoundJLabel(45+j*30, 110+i*30, 30,30,30,30);
+                daysStart[i][j]= new RoundJLabel();
+                daysStart[i][j].setBounds(45+j*30, 110+i*30, 30,30,30,30);
                 daysStart[i][j].setHorizontalAlignment(SwingConstants.CENTER);
                 daysStart[i][j].setVerticalAlignment(SwingConstants.CENTER);
                 daysStart[i][j].setOpaque(false);
