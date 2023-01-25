@@ -33,7 +33,7 @@ public class CalendarUI extends JPanel {
         setSize(640,300);
         setVisible(true);
         setLayout(null);
-        setBackground(new Color(0,0,0));
+        setBackground(new Color(10, 66, 140));
         buildGUI();
 
     }
@@ -45,7 +45,7 @@ public class CalendarUI extends JPanel {
             String month = new String(String.valueOf(c.get(Calendar.MONTH)+1));
             String year = new String(String.valueOf(c.get(Calendar.YEAR)));
 
-            return new String(date + " " + month + " " + year);
+            return new String(date + "/" + month + "/" + year);
 
 
         }
@@ -56,7 +56,7 @@ public class CalendarUI extends JPanel {
         String month = new String(String.valueOf(c.get(Calendar.MONTH)+1));
         String year = new String(String.valueOf(c.get(Calendar.YEAR)));
         c.add(Calendar.MONTH,-1);
-        return new String(date + " " + month + " " + year);
+        return new String(date + "/" + month + "/" + year);
 
 
     }

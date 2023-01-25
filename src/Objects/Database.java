@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class Database {
     String db = "jdbc:mysql://127.0.0.1:3306/hotelsdb";
     String user = "root";
-    String pass = "StefanM951659";
+    String pass = "St951659";
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
@@ -151,6 +151,44 @@ public class Database {
         ps = con.prepareStatement("update users set perm = ? where username = ? ");
         ps.setString(1, user);
         ps.setInt(2, perm);
+        ps.executeUpdate();
+
+    }
+    public LinkedList<Integer> getsReservations(String user)throws SQLException{
+            ps = con.prepareStatement("SELECT  id from reservations where c_user = ?");
+            ps.setString(1, user);
+            LinkedList<Integer> res = new LinkedList<>();
+            rs = ps.executeQuery();
+            while(rs.next()){
+                res.add(rs.getInt(1));
+            }
+            return res;
+
+    }
+
+    public void cancelReserv(int id)throws SQLException{
+            ps = con.prepareStatement("DELETE FROM reservations WHERE id =?");
+            ps.setInt(1, id);
+            ps.executeUpdate();
+
+    }
+
+    public Integer getHotelFromRes(int id)throws SQLException{
+            ps = con.prepareStatement("SELECT hotel_id FROM reservations WHERE id = ?");
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            rs.next();
+            return rs.getInt(1);
+    }
+    public void book(int hotel_id, String c_user, int people, int nights, Date accommodation, Date vacation, int rooms)throws SQLException{
+            ps = con.prepareStatement("insert into reservations(hotel_id, c_user, people, nights, accommodation, vacation, rooms) values(?, ?, ?, ?, ?, ?,?)");
+            ps.setInt(1, hotel_id);
+            ps.setString(2, c_user);
+            ps.setInt(3, people);
+        ps.setInt(4, nights);
+        ps.setDate(5, accommodation);
+        ps.setDate(6, vacation);
+        ps.setInt(7, rooms);
         ps.executeUpdate();
 
     }

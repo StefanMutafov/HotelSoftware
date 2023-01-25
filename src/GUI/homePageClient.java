@@ -7,13 +7,18 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 
 public class homePageClient extends JFrame {
 
 //TODO: Remove the font from the icons
 int x,y;
         int selectedHotel;
+        int selectedRes = -1;
         int clickedPanel = -1;
     CalendarUI cal = new CalendarUI();
     Database db = new Database();
@@ -166,6 +171,16 @@ int x,y;
         yourBookings.setBounds(20, 160, 160,80, 10, 10 );
         yourBookings.setIdle(new Color(20, 100, 145));
         yourBookings.setHorizontalAlignment(JLabel.CENTER);
+        yourBookings.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    setYourBookingScreen();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
         JLabel bookingsIcon = new JLabel(new ImageIcon("icons/luggage.png"));
         bookingsIcon.setBounds(10, 24, 32, 32);
         bookingsIcon.setOpaque(false);
@@ -233,7 +248,87 @@ int x,y;
 
 
 
+        public void setYourBookingScreen() throws SQLException{
+            background.removeAll();
 
+
+
+            //
+            //Position tester
+            //
+//        cancel.addMouseListener(new MouseAdapter() {
+//
+//
+//            @Override
+//            public void mousePressed(MouseEvent e){
+//
+//                x = e.getX();
+//                y = e.getY();
+//
+//            }
+//        });
+//            cancel.addMouseMotionListener(new MouseAdapter() {
+//            @Override
+//            public void mouseDragged(MouseEvent e) {
+//                cancel.setLocation (e.getXOnScreen()-x,e.getYOnScreen()-y);
+//                System.out.println(cancel.getX() + " " + cancel.getY());
+//            }
+//        });
+
+            CustomRoundButton cancel = new CustomRoundButton();
+            LinkedList<Integer> res = db.getsReservations(user);
+            LinkedList<RoundJPanel> resPane = new LinkedList<>();
+            LinkedList<RoundJLabel> resInfo = new LinkedList<>();
+            for(int i = 0;i<res.size();i++){
+                resPane.add(new RoundJPanel(20, 20+i*210, 350, 200, 100,100));
+                resPane.get(i).setLayout(null);
+                resPane.get(i).setBackground(Color.BLUE);
+                int finalI = i;
+                resPane.get(i).addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        if(finalI!=-1){
+                            resPane.get(finalI).setBackground(Color.BLUE);
+                        }
+                        resPane.get(finalI).setBackground(Color.BLACK);
+                        selectedRes = finalI;
+
+                    }
+                });
+
+
+                cancel.setBounds(590,745,200,70,0,0);
+                cancel.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        try {
+                            db.cancelReserv(selectedRes);
+                        } catch (SQLException ex) {
+                            throw new RuntimeException(ex);
+                        }
+
+                        resPane.remove(selectedRes);
+                        selectedRes = -1;
+                        background.repaint();
+                    }
+                });
+
+                RoundJLabel inf = new RoundJLabel();
+                inf.setBackground(Color.BLUE);
+                inf.setBounds(100, 30, 220, 140, 50, 50);
+                inf.setText("<html><div style='text-align: center;'>Hotel name: " +db.getHotelName(db.getHotelFromRes(db.getsReservations(user).get(i))) + "<br/>" + "</div></html>");
+                resInfo.add(inf);
+                resPane.get(i).repaint();
+                resPane.get(i).add(resInfo.get(i));
+                background.add(resPane.get(i));
+            }
+
+
+
+
+            background.add(cancel);
+        background.repaint();
+        }
 
 
 
@@ -243,6 +338,12 @@ int x,y;
         background.removeAll();
 
         JLabel welcomeScreen = new JLabel();
+
+
+
+
+
+
 
         welcomeScreen.setHorizontalAlignment(SwingConstants.CENTER);
         welcomeScreen.setVerticalAlignment(SwingConstants.CENTER);
@@ -527,7 +628,36 @@ int x,y;
         rooms.setBounds(20,380, 230, 50);
 
 
-
+        CustomRoundButton bookNow = new CustomRoundButton();
+        bookNow.setBackground(Color.BLUE);
+        bookNow.setText("Book Now");
+        bookNow.setBounds(898,689,320,50, 50, 50);
+        bookNow.setClicked(Color.PINK);
+        bookNow.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Date acc;
+                java.sql.Date sqlAcc;
+                Date leave;
+                java.sql.Date sqlLeave;
+                try {
+                    acc = new SimpleDateFormat("dd/MM/yyyy").parse(cal.getStartDate());
+                    sqlAcc = new java.sql.Date(acc.getTime());
+                    leave = new SimpleDateFormat("dd/MM/yyyy").parse(cal.getEndDate());
+                    sqlLeave = new java.sql.Date(leave.getTime());
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+                long diff = leave.getTime() - acc.getTime();
+                int nights = (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+                System.out.println(nights);
+                try {
+                    db.book(selectedHotel, user,  people.getCount(), nights,  sqlAcc,  sqlLeave, rooms.getCount());
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
 
 
 
@@ -537,7 +667,7 @@ int x,y;
         //
         //Position tester
         //
-//        right.addMouseListener(new MouseAdapter() {
+//        bookNow.addMouseListener(new MouseAdapter() {
 //
 //
 //            @Override
@@ -548,14 +678,14 @@ int x,y;
 //
 //            }
 //        });
-//        right.addMouseMotionListener(new MouseAdapter() {
+//        bookNow.addMouseMotionListener(new MouseAdapter() {
 //            @Override
 //            public void mouseDragged(MouseEvent e) {
-//                right.setLocation (e.getXOnScreen()-x,e.getYOnScreen()-y);
-//                System.out.println(right.getX() + " " + right.getY());
+//                bookNow.setLocation (e.getXOnScreen()-x,e.getYOnScreen()-y);
+//                System.out.println(bookNow.getX() + " " + bookNow.getY());
 //            }
 //        });
-
+        background.add(bookNow);
         background.add(welcomeScreen);
         background.add(left);
         background.add(right);
